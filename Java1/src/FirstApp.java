@@ -1,3 +1,5 @@
+import java.util.function.DoubleToIntFunction;
+
 public class FirstApp {
     public static void main(String[] args) {
        byte myByte = 127;
@@ -26,6 +28,7 @@ public class FirstApp {
        System.out.println("Задание 9");
        isLeap(2020);
        isLeap(1900);
+        isLeap(1600);
     }
     public static float simpleCalc(int a,int b,int c,int d){
         float result;
@@ -35,11 +38,6 @@ public class FirstApp {
     public static void inRange(int a, int b){
         boolean isInRange = ((a + b) >= 10 && (a + b) <= 20);
         System.out.println(isInRange ? "Входит в диапазон" : "Не входит в диапазон");
-        if ((a + b) >= 10 && (a + b) <= 20){
-            System.out.println("Входит в диапазон");
-        } else {
-            System.out.println("Не входит в диапазон");
-        }
     }
     public static void isPositive(int a){
         boolean isIntPos = (a >= 0);
@@ -50,19 +48,10 @@ public class FirstApp {
         System.out.println(isIntNeg);
     }
     public static void sayHi(String name){
-        System.out.println("Привет, "+name+"!");
+        System.out.println("Привет, " + name + "!");
     }
     public static void isLeap(int year){
-        if ((year % 4 == 0) & (!(year % 100 == 0))){
-            System.out.println(year+ " год является високосным");
-        } else {
-            if (year % 400 == 0){
-                System.out.println(year+ " год является високосным");
-            } else {
-                System.out.println(year+ " год не является високосным");
-            }
-
-        }
-
+        boolean isLeap = ((year % 4 == 0) && (year % 100 != 0) || (year % 400 == 0));
+        System.out.println(isLeap ? year + " год високосный" : year + " год не високосный");
     }
 }
