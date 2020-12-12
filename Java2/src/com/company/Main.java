@@ -20,7 +20,11 @@ public class Main {
         System.out.println(checkBalance(new int[] {2, 2, 2, 1, 2, 2, 10, 1}));
         System.out.println(checkBalance(new int[] {2, 2}));
         System.out.println(checkBalance(new int[] {2, 10}));
-
+        System.out.println(checkBalance(new int[] {10, 10, 5, 5, 5, 5, 10}));
+        System.out.println(checkBalance(new int[] {10, 10, 5, 10, 5, 5, 10}));
+        System.out.println(Arrays.toString(mvArray(new int[]{1, 2, 3, 4, 5}, 1)));
+        System.out.println(Arrays.toString(mvArray(new int[]{1, 2, 3, 4, 5}, 2)));
+        System.out.println(Arrays.toString(mvArray(new int[]{1, 2, 3, 4, 5}, -2)));
     }
 
     public static void reverse(int[] args) {
@@ -78,11 +82,9 @@ public class Main {
         System.out.println(max);
     }
     public static boolean checkBalance(int[] arr){
-        int balanceCheckerK;
-        int balanceCheckerJ;
         for (int i = 0; i < arr.length; i++){
-            balanceCheckerK = 0;
-            balanceCheckerJ = 0;
+            int balanceCheckerK = 0;
+            int balanceCheckerJ = 0;
             for (int k = 0; k < i; k++){
                 balanceCheckerK += arr[k];
             }
@@ -95,5 +97,38 @@ public class Main {
         }
         return false;
     }
-
+    public static int[] mvArray(int[] arr, int n){
+        if (n > 0){
+            while (n > arr.length){
+                n -= arr.length;
+            }
+            while(n > 0){
+                int buffer = arr[arr.length - 1];
+                for (int i = arr.length - 1; i >= 0; i--){
+                    if (i == 0){
+                        arr[i] = buffer;
+                    } else {
+                        arr[i] = arr[i - 1];
+                    }
+                }
+                n--;
+            }
+        } else {
+            while (n > arr.length){
+                n -= arr.length;
+            }
+            while(n < 0){
+                int buffer = arr[0];
+                for (int i = 0; i <= arr.length - 1; i++){
+                    if (i == arr.length - 1){
+                        arr[i] = buffer;
+                    } else {
+                        arr[i] = arr[i + 1];
+                    }
+                }
+                n++;
+            }
+        }
+        return arr;
+    }
 }
